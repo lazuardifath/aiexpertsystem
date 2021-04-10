@@ -182,12 +182,12 @@ const gds = new Rule({
             return gds_facts
         } else if (facts.medtest.gds >= 140 && facts.medtest.gds <= 199) {
             gds_facts = {
-                message: facts.result.test_result.gds.message = 'Hati-Hati! berdasarkan Gula darah sewaktu (GDS) pada tes ini, Anda mungkin menderita Diabetes! glukosa dalam sewaktu (GDS) antara 140 dan 199 didiagnosis menderita <b>prediabetes</b>',
+                message: facts.result.test_result.gds.message = 'Hati-Hati! berdasarkan Gula darah sewaktu (GDS) pada tes ini, Anda mungkin menderita Diabetes! glukosa dalam sewaktu (GDS) antara 140 dan 199 didiagnosis menderita ' + txt.bold('Prediabetes'),
                 status: facts.result.test_result.gds.status = 1,
                 score: facts.result.test_result.gds.score = 11.67
             }
             return gds_facts
-        } else if (facts.medtest.gds >= 200 && isTrue.length >= 4) {
+        } else if (facts.medtest.gds >= 200 || isTrue.length >= 4) {
             gds_facts = {
                 message: facts.result.test_result.gds.message = 'Anda Menderita Diabetes, Karena Gula Darah Sewaktu sangat tinggi disertai Gejala Klasik Diabetes. Segera hubungi dokter.',
                 status: facts.result.test_result.gds.status = 2,
