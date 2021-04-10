@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const hbs = require('hbs')
+const app = express()
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
