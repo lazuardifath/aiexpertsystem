@@ -2,8 +2,8 @@ const { Rule, Rools } = require('rools')
 const symptoms = require('./diabetes_symptoms')
 
 let facts = ''
-const getvalues = (p, fpg, gthae, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10) => {
-    const getvalues = symptoms.setSymptoms(p, fpg, gthae, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, (res) => {
+const getvalues = (p, fpg, gthae, s1, s2, s3, s4) => {
+    const getvalues = symptoms.setSymptoms(p, fpg, gthae, s1, s2, s3, s4, (res) => {
         return res
     });
     facts = getvalues
@@ -38,16 +38,16 @@ const symptom_risk = new Rule({
             return values == true
         })
 
-        if (isTrue.length >= 2) {
+        if (isTrue.length >= 4) {
             symptom_risk_fact = {
-                message: facts.result.symptom_result.message = 'jika 2 pernyataan atau lebih benar, Anda dapat diindikasikan mengidap diabetes',
+                message: facts.result.symptom_result.message = 'jika 4 pernyataan benar, Anda dapat diindikasikan mengidap diabetes.',
                 status: facts.result.symptom_result.status = true,
                 score: facts.result.symptom_result.score = 25
             }
             return symptom_risk_fact
         } else {
             symptom_risk_fact = {
-                message: facts.result.symptom_result.message = 'Anda mungkin tidak menderita diabetes, karena Anda tidak memiliki lebih dari 2 gejala',
+                message: facts.result.symptom_result.message = 'Anda mungkin tidak menderita diabetes, karena Anda tidak mengidap 4 gejala klasik Diabetes',
                 status: facts.result.symptom_result.status = false,
                 score: facts.result.symptom_result.score = 0
             }

@@ -22,7 +22,7 @@
 // s9 sores that don’t heal ( Luka yang sulit sembuh.
 // s10 More infections than usual  (Sering mengalami infeksi, misalnya pada gusi, kulit, vagina, atau saluran kemih.
 
-const setSymptoms = (hasDiabetesParent, fpg, gthae, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, callback) => {
+const setSymptoms = (hasDiabetesParent, fpg, gthae, s1, s2, s3, s4, callback) => {
     let parameters = {
         hasDiabetesParent: hasDiabetesParent,
         medtest: {
@@ -34,12 +34,6 @@ const setSymptoms = (hasDiabetesParent, fpg, gthae, s1, s2, s3, s4, s5, s6, s7, 
             s2: s2,
             s3: s3,
             s4: s4,
-            s5: s5,
-            s6: s6,
-            s7: s7,
-            s8: s8,
-            s9: s9,
-            s10: s10,
         },
         result: {
             symptom_result: {
