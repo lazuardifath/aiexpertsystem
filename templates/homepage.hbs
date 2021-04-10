@@ -67,21 +67,35 @@
             </div>
         </section>
 
-        <section id="services" class="bg-light" style="margin-top: 150px; padding-top: 50px;">
+        <section id="services" class="bg-light" style="padding-top: 20px;">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h2>Diabetes Expert System</h2>
-                        <p class="lead">This expert system is built for detecting Diabetes based on these 4 aspects</p>
-                        <ul>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Diabetes Expert System
+                        </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <p class="lead">This expert system is built for detecting Diabetes based on these 4 aspects</p>
+                            <ul>
                             <li>1. Diabetic Parent</li>
                             <li>2. Symptoms : there are 10 common symptom</li>
                             <li>3. Glucose Test : Fasting Blood Sugar (FBS)</li>
                             <li>4. Glucose Test : Two-Hour Postprandial Glucose (THPG)</li>
-                        </ul>
-                        <br>
-                        <p>Based on these resources : </p>
-                        <ul>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Resources
+                        </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
                             <li><a href="https://www.alodokter.com/diabetes" target="_blank"
                                     rel="noopener noreferrer">https://www.alodokter.com/diabetes</a></li>
                             <li><a href="https://hellosehat.com/pusat-kesehatan/diabetes-kencing-manis/serba-serbi-pemeriksaan-diabetes-di-rumah/"
@@ -98,31 +112,27 @@
                             <li><a href="https://www.webmd.com/diabetes/diagnosing-type-2-diabetes#1" target="_blank"
                                     rel="noopener noreferrer">https://www.webmd.com/diabetes/diagnosing-type-2-diabetes#1</a>
                             </li>
-                        </ul>
-                        <hr>
-                        Complete Documentation <a
-                            href="https://docs.google.com/document/d/1S0MOIo2WxfIlw1Bqwukt8xEGVtnWrpmK7xbBnCelRPQ/edit?usp=sharing"
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                            Complete Documentation
+                        </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <a href="https://docs.google.com/document/d/1S0MOIo2WxfIlw1Bqwukt8xEGVtnWrpmK7xbBnCelRPQ/edit?usp=sharing"
                             target="_blank" rel="noopener noreferrer">is Here</a>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        {{!-- <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h2>Contact us</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat
-                            voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam
-                            et repudiandae ipsa exercitationem, in, quo totam.</p>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
-
-
-        <div id="test" class="container" style="margin-top: 150px; padding-top: 50px;">
+        <div id="test" class="container" style="padding-top: 20px;">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     {{>questionform}}
@@ -133,7 +143,7 @@
         <!-- Footer -->
         <footer class="py-5 bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Softcomputing PWr 2020</p>
+                <p class="m-0 text-center text-white">Copyright &copy; Lazuardi Fatahilah 2020</p>
             </div>
             <!-- /.container -->
         </footer>
