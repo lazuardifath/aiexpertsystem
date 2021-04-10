@@ -160,6 +160,7 @@ const gthae = new Rule({
 })
 
 var gds_facts = ''
+var txt = 'Prediabetes';
 const gds = new Rule({
     name: 'glukosa plasma sewaktu',
     when: [
@@ -176,7 +177,7 @@ const gds = new Rule({
             return gds_facts
         } else if (facts.medtest.gds >= 140 && facts.medtest.gds <= 199) {
             gds_facts = {
-                message: facts.result.test_result.gds.message = 'Hati-Hati! berdasarkan Gula darah sewaktu (GDS) pada tes ini, Anda mungkin menderita Diabetes! glukosa dalam sewaktu (GDS) antara 140 dan 199 didiagnosis menderita ' + txt.bold('Prediabetes'),
+                message: facts.result.test_result.gds.message = 'Hati-Hati! berdasarkan Gula darah sewaktu (GDS) pada tes ini, Anda mungkin menderita Diabetes! glukosa dalam sewaktu (GDS) antara 140 dan 199 didiagnosis menderita ' + txt.bold(),
                 status: facts.result.test_result.gds.status = 1,
                 score: facts.result.test_result.gds.score = 11.67
             }
