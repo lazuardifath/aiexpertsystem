@@ -40,14 +40,14 @@ const symptom_risk = new Rule({
 
         if (isTrue.length >= 2) {
             symptom_risk_fact = {
-                message: facts.result.symptom_result.message = 'if 2 or more statements are true, you can be indicated as having diabetes',
+                message: facts.result.symptom_result.message = 'jika 2 pernyataan atau lebih benar, Anda dapat diindikasikan mengidap diabetes',
                 status: facts.result.symptom_result.status = true,
                 score: facts.result.symptom_result.score = 25
             }
             return symptom_risk_fact
         } else {
             symptom_risk_fact = {
-                message: facts.result.symptom_result.message = 'You may have no diabetes, because you dont have more than 2 symptoms',
+                message: facts.result.symptom_result.message = 'Anda mungkin tidak menderita diabetes, karena Anda tidak memiliki lebih dari 2 gejala',
                 status: facts.result.symptom_result.status = false,
                 score: facts.result.symptom_result.score = 0
             }
@@ -66,14 +66,14 @@ const diabetes_parent_risk = new Rule({
     then: (facts) => {
         if (facts.hasDiabetesParent == true) {
             diabetes_parent_risk_fact = {
-                message: facts.result.parent_risk.message = "Beware, If your parent is diabetes, then you could be having diabetes..",
+                message: facts.result.parent_risk.message = "Waspadalah, jika orang tua Anda diabetes, maka Anda bisa jadi menderita diabetes ..",
                 status: facts.result.parent_risk.status = true,
                 score: facts.result.parent_risk.score = 25
             }
             return diabetes_parent_risk_fact
         } else {
             diabetes_parent_risk_fact = {
-                message: facts.result.parent_risk.message = "You likely have no diabetes",
+                message: facts.result.parent_risk.message = "Anda mungkin tidak menderita diabetes",
                 status: facts.result.parent_risk.status = false,
                 score: facts.result.parent_risk.score = 0
             }
@@ -98,21 +98,21 @@ const fpg = new Rule({
     then: (facts) => {
         if (facts.medtest.fpg >= 125) {
             fpg_fact = {
-                message: facts.result.test_result.fpg.message = 'It is above normal!, Sorry you have diabetes',
+                message: facts.result.test_result.fpg.message = 'Glukosa di atas normal !. Maaf, Anda menderita diabetes. Segera lakukan checkup',
                 status: facts.result.test_result.fpg.status = 2,
                 score: facts.result.test_result.fpg.score = 25
             }
             return fpg_fact
         } else if (facts.medtest.fpg >= 100 && facts.medtest.fpg <= 125) {
             fpg_fact = {
-                message: facts.result.test_result.fpg.message = 'Be careful! you may have Diabetes! glucose between 100 and 125 is diagnosed to have paradiabetes',
+                message: facts.result.test_result.fpg.message = 'Hati-Hati! Anda mungkin menderita Diabetes! glukosa antara 100 dan 125 didiagnosis menderita paradiabetes',
                 status: facts.result.test_result.fpg.status = 1,
                 score: facts.result.test_result.fpg.score = 16.67
             }
             return fpg_fact
         } else {
             fpg_fact = {
-                message: facts.result.test_result.fpg.message = 'Glucose larger than equal 60 and lesser than 100 is normal. If it is below, check to the doctor',
+                message: facts.result.test_result.fpg.message = 'Glukosa yang lebih besar dari sama dengan 60 dan kurang dari 100 adalah normal. Jika di bawah, periksakan ke dokter',
                 status: facts.result.test_result.fpg.status = 0,
                 score: facts.result.test_result.fpg.score = 0
             }
@@ -135,21 +135,21 @@ const gthae = new Rule({
     then: (facts) => {
         if (facts.medtest.gthae >= 200) {
             gthae_facts = {
-                message: facts.result.test_result.gthae.message = 'It is above normal!, Sorry you have diabetes',
+                message: facts.result.test_result.gthae.message = 'Glukosa di atas normal ! Maaf, Anda menderita diabetes. Segera lakukan checkup',
                 status: facts.result.test_result.gthae.status = 2,
                 score: facts.result.test_result.gthae.score = 25
             }
             return gthae_facts
         } else if (facts.medtest.gthae >= 140 && facts.medtest.gthae <= 199) {
             gthae_facts = {
-                message: facts.result.test_result.gthae.message = 'Be careful! you may have Diabetes! glucose between 140 and 199 is diagnosed to have paradiabetes, for this test',
+                message: facts.result.test_result.gthae.message = 'Hati-Hati! pada tes ini Anda mungkin menderita Diabetes! glukosa antara 140 dan 199 didiagnosis menderita paradiabetes',
                 status: facts.result.test_result.gthae.status = 1,
                 score: facts.result.test_result.gthae.score = 16.67
             }
             return gthae_facts
         } else {
             gthae_facts = {
-                message: facts.result.test_result.gthae.message = 'Glucose under 140 is normal.',
+                message: facts.result.test_result.gthae.message = 'Glukosa di bawah 140 normal.',
                 status: facts.result.test_result.gthae.status = 0,
                 score: facts.result.test_result.gthae.score = 0
             }
@@ -175,13 +175,13 @@ const overallResult = new Rule({
         // console.log('jangan cepat marah ', calc)
 
         if (calc >= 75 && calc <= 100) {
-            return facts.result.final_result = 'You definitely have Diabetes! go to the doctor!', facts.result.percentage = calc
+            return facts.result.final_result = 'Anda pasti menderita Diabetes! pergi ke dokter!', facts.result.percentage = calc
         } else if (calc > 25 && calc < 75) {
-            return facts.result.final_result = 'You are having paradiabetes, better go to the doctor!', facts.result.percentage = calc
+            return facts.result.final_result = 'Anda mengalami paradiabetes, lebih baik pergi ke dokter!', facts.result.percentage = calc
         } else if (calc <= 25) {
-            return facts.result.final_result = 'You may be having paradiabetes , but better if check the doctor!', facts.result.percentage = calc
+            return facts.result.final_result = 'Anda mungkin mengalami paradiabetes, tetapi lebih baik jika memeriksakan diri ke dokter!', facts.result.percentage = calc
         } else {
-            return facts.result.final_result = 'I hope you are okay!, stay fit and live healthy', facts.result.percentage = calc
+            return facts.result.final_result = 'Saya harap Anda baik-baik saja !, tetap bugar dan hidup sehat', facts.result.percentage = calc
         }
 
     }
