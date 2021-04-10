@@ -31,12 +31,13 @@ app.get('/evaluation', async (req, res) => {
             s3: JSON.parse(req.query.s3),
             s4: JSON.parse(req.query.s4),
             fpg: req.query.fpg,
-            gthae: req.query.gthae
+            gthae: req.query.gthae,
+            gds: req.query.gds
         }
 
 
         const { dp, s1, s2, s3, s4,
-            fpg, gthae } = values
+            fpg, gthae, gds } = values
 
         // if (!dp || !s1 || !s2 || !s3 || !s4 || !s5 || !s6 || !s7 || !s8 || !s9 || !s10 || !fpg || !gthae) {
         //     return res.send({ error: 'you have to ake sure that the query string is correct' })
@@ -45,7 +46,7 @@ app.get('/evaluation', async (req, res) => {
         console.log(values)
 
         //const result = await expert.finalresult(true, 300, 400, false, false, false, false, false, false, false, false, false, false)
-        const result = await expert.finalresult(dp, fpg, gthae, s1, s2, s3, s4)
+        const result = await expert.finalresult(dp, fpg, gthae, gds, s1, s2, s3, s4)
 
         return res.json(result)
     } catch (error) {
@@ -55,7 +56,7 @@ app.get('/evaluation', async (req, res) => {
 
 //fr example
 app.get('/evaluationn', async (req, res) => {
-    const result = await expert.finalresult(false, 10, 100, true, true, false, false, false, false, false, false, false, false)
+    const result = await expert.finalresult(false, 10, 100, 100, true, true, false, false, false, false, false, false, false, false)
     //return console.log(result)
     return res.json(result)
 })
