@@ -1,20 +1,26 @@
 const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+const app = express()
 const hbs = require('hbs')
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'hbs')
-  .get('/', (req, res) => res.render('homepage'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const path = require('path')
+const viewLocation = path.join(__dirname, '../templates')
+const publicPath = path.join(__dirname, '../public/')
 
+// console.log(publicPath)
+//.use for public, .set for template, views
+app.use(express.static(publicPath))
+app.set('view engine', 'hbs')
+app.set('views', viewLocation)
 
-const partials = path.join(__dirname, 'views/partials')
+const partials = path.join(__dirname, '../templates/partials')
 hbs.registerPartials(partials)
 
-const expert = require('src/utils/diabetes')
+const expert = require('./utils/diabetes')
+
+app.get('/', (req, res) => {
+    res.render('homepage')
+})
+
 
 app.get('/evaluation', async (req, res) => {
     try {
@@ -33,6 +39,7 @@ app.get('/evaluation', async (req, res) => {
             fpg: req.query.fpg,
             gthae: req.query.gthae
         }
+
 
         const { dp, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,
             fpg, gthae } = values
@@ -57,4 +64,11 @@ app.get('/evaluationn', async (req, res) => {
     const result = await expert.finalresult(false, 10, 100, true, true, false, false, false, false, false, false, false, false)
     //return console.log(result)
     return res.json(result)
+})
+
+
+const port = process.env.PORT || 1996
+
+app.listen(port, () => {
+    console.log('port listen ', port)
 })
