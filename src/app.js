@@ -31,13 +31,12 @@ app.get('/evaluation', async (req, res) => {
             s3: JSON.parse(req.query.s3),
             s4: JSON.parse(req.query.s4),
             fpg: req.query.fpg,
-            gds: req.query.gds,
             gthae: req.query.gthae
         }
 
 
         const { dp, s1, s2, s3, s4,
-            fpg, gds, gthae } = values
+            fpg, gthae } = values
 
         // if (!dp || !s1 || !s2 || !s3 || !s4 || !s5 || !s6 || !s7 || !s8 || !s9 || !s10 || !fpg || !gthae) {
         //     return res.send({ error: 'you have to ake sure that the query string is correct' })
@@ -46,7 +45,7 @@ app.get('/evaluation', async (req, res) => {
         console.log(values)
 
         //const result = await expert.finalresult(true, 300, 400, false, false, false, false, false, false, false, false, false, false)
-        const result = await expert.finalresult(dp, fpg, gds, gthae, s1, s2, s3, s4)
+        const result = await expert.finalresult(dp, fpg, gthae, s1, s2, s3, s4)
 
         return res.json(result)
     } catch (error) {

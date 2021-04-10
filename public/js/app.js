@@ -4,7 +4,6 @@ console.log(questionsform)
 const p = document.querySelector('#parent-value')
 const fpg = document.querySelector('#fpg')
 const gthae = document.querySelector('#gthae')
-const gds = document.querySelector('#gds')
 const s1 = document.querySelector('#s1')
 const s2 = document.querySelector('#s2')
 const s3 = document.querySelector('#s3')
@@ -19,15 +18,14 @@ const getParentTest = document.querySelector('#ParentTest')
 const SymptomsTest = document.querySelector('#SymptomsTest')
 const fpgTest = document.querySelector('#fpgTest')
 const gthaeTest = document.querySelector('#gthaeTest')
-const gdsTest = document.querySelector('#gdsTest')
 const theFinalResult = document.querySelector('#finalResult')
 
-const expertresult = async (p, fpg, gthae, gds, s1, s2, s3, s4) => {
+const expertresult = async (p, fpg, gthae, s1, s2, s3, s4) => {
     result_message.textContent = "..loading .."
-    const url = await `evaluation?fpg=${fpg}&dp=${p}&gthae=${gthae}&gds=${gds}&s1=${s1}&s2=${s2}&s3=${s3}&s4=${s4}`
+    const url = await `evaluation?fpg=${fpg}&dp=${p}&gthae=${gthae}&s1=${s1}&s2=${s2}&s3=${s3}&s4=${s4}`
     //const url = await `/evaluation/?dp=true&fpg=890&gthae=140&s1=true&s2=true&s3=false&s4=false&s5=false&s6=false&s7=false&s8=false&s9=false&s10=false`
 
-    if (p === 'Choose...' || fpg == null || gthae == null || gds == null || s1 == 'Choose...'
+    if (p === 'Choose...' || fpg == null || gthae == null || s1 == 'Choose...'
         || s2 == 'Choose...' || s3 == 'Choose...' || s4 == 'Choose...') {
         // return result_message.textContent = '.. you must complete all the questions! ..'
         throw new Error('cannot be accepted')
@@ -45,7 +43,7 @@ const expertresult = async (p, fpg, gthae, gds, s1, s2, s3, s4) => {
 
 questionsform.addEventListener('submit', (e) => {
     e.preventDefault();
-    expertresult(p.value, fpg.value, gthae.value, gds.value, s1.value, s2.value, s3.value, s4.value)
+    expertresult(p.value, fpg.value, gthae.value, s1.value, s2.value, s3.value, s4.value)
         .then((result) => {
             result.json().then((res) => {
                 console.log('here is the result : ', res)
@@ -56,7 +54,6 @@ questionsform.addEventListener('submit', (e) => {
                         parentTest: res.result.parent_risk.message,
                         symptomTest: res.result.symptom_result.message,
                         fpgTest: res.result.test_result.fpg.message,
-                        gdsTest: res.result.test_result.gds.message,
                         gthaeTest: res.result.test_result.gthae.message,
                     }
                 }
@@ -65,7 +62,6 @@ questionsform.addEventListener('submit', (e) => {
                 getParentTest.textContent = 'Hasil Tes Diabetes Turunan : ' + data.summary.parentTest
                 SymptomsTest.textContent = 'Hasil Uji Gejala : ' + data.summary.symptomTest
                 fpgTest.textContent = 'Hasil Tes FBS (Gula Puasa) : ' + data.summary.fpgTest
-                gdsTest.textContent = 'Hasil Tes GDS (Gula Dalam Sewaktu) : ' + data.summary.gdsTest
                 gthaeTest.textContent = 'Hasil Tes THPG (Gula 2 jam) : ' + data.summary.gthaeTest
                 theFinalResult.textContent = 'Final Conclusion : ' + data.final_result
             })

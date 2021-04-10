@@ -159,39 +159,6 @@ const gthae = new Rule({
 
 })
 
-var gds_facts = ''
-const gds = new Rule({
-    name: 'glucose dalam sewaktu',
-    when: [
-        (facts) => facts.medtest.gds,
-        (facts) => facts.symptoms
-    ],
-    then: (facts) => {
-        if (facts.medtest.gds >= 200 && isTrue.length >= 4) {
-            gds_facts = {
-                message: facts.result.test_result.gds.message = 'Gula Dalam Sewaktu (GDS) anda melebihi 200 HbA1c. Gula anda tinggi, anda menderita diabetes',
-                status: facts.result.test_result.gds.status = 2,
-                score: facts.result.test_result.gds.score = 25
-            }
-            return gds_facts
-        } else if (facts.medtest.gds >= 140 && facts.medtest.gds <= 199) {
-            gds_facts = {
-                message: facts.result.test_result.gds.message = 'Hati-Hati! Gula Dalam Sewaktu (GDS) pada tes ini lumayan tinggi. Anda mungkin menderita Diabetes! glukosa antara 140 dan 199 didiagnosis menderita prediabetes',
-                status: facts.result.test_result.gds.status = 1,
-                score: facts.result.test_result.gds.score = 16.67
-            }
-            return gds_facts
-        } else {
-            gds_facts = {
-                message: facts.result.test_result.gds.message = 'Gula Dalam Sewaktu (GDS) di bawah 140 normal.',
-                status: facts.result.test_result.gds.status = 0,
-                score: facts.result.test_result.gds.score = 0
-            }
-            return gds_facts
-        }
-    }
-
-})
 
 //calculation
 const overallResult = new Rule({
@@ -204,8 +171,7 @@ const overallResult = new Rule({
             parseInt(facts.result.symptom_result.score) +
             parseInt(facts.result.parent_risk.score) +
             parseInt(facts.result.test_result.gthae.score) +
-            parseInt(facts.result.test_result.fpg.score) +
-            parseInt(facts.result.test_result.gds.score);
+            parseInt(facts.result.test_result.fpg.score);
 
         // console.log('jangan cepat marah ', calc)
 
@@ -227,7 +193,7 @@ const evaluation = async () => {
     const rools = new Rools()
 
     try {
-        await rools.register([symptom_risk, fpg, gthae, gds, diabetes_parent_risk, overallResult])
+        await rools.register([symptom_risk, fpg, gthae, diabetes_parent_risk, overallResult])
         await rools.evaluate(facts)
         // console.log(await rools.evaluate(facts))
         return facts
@@ -239,9 +205,9 @@ const evaluation = async () => {
 }
 
 //call set paramater function and evaluation functions
-const finalresult = async (p, fpg, gthae, gds, s1, s2, s3, s4) => {
+const finalresult = async (p, fpg, gthae, s1, s2, s3, s4) => {
     try {
-        await getvalues(p, fpg, gthae, gds, s1, s2, s3, s4)
+        await getvalues(p, fpg, gthae, s1, s2, s3, s4)
         const res = await evaluation()
         return res
     } catch (error) {
