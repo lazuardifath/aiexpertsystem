@@ -66,11 +66,11 @@ questionsform.addEventListener('submit', (e) => {
                     }
                 }
 
-                result_message.textContent = 'Percentage : ' + data.percentage + '%'
-                getParentTest.textContent = 'Parent Test Result : ' + data.summary.parentTest
-                SymptomsTest.textContent = 'Symptoms Test Results : ' + data.summary.symptomTest
-                fpgTest.textContent = 'FBS test Results : ' + data.summary.fpgTest
-                gthaeTest.textContent = 'THPG Test Results : ' + data.summary.gthaeTest
+                result_message.textContent = 'Persentase : ' + data.percentage + '%'
+                getParentTest.textContent = 'Hasil Tes Diabetes Turunan : ' + data.summary.parentTest
+                SymptomsTest.textContent = 'Hasil Uji Gejala : ' + data.summary.symptomTest
+                fpgTest.textContent = 'Hasil Tes FBS (Gula Puasa) : ' + data.summary.fpgTest
+                gthaeTest.textContent = 'Hasil Tes THPG (Gula 2 jam) : ' + data.summary.gthaeTest
                 theFinalResult.textContent = 'Final Conclusion : ' + data.final_result
             })
         })
