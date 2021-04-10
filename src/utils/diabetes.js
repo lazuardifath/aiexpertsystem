@@ -164,14 +164,8 @@ const gds = new Rule({
     name: 'glukosa plasma sewaktu',
     when: [
         (facts) => facts.medtest.gds,
-        (facts) => facts.symptoms
     ],
     then: (facts) => {
-
-        const obj_symptoms = Object.values(facts.symptoms);
-        isTrue = obj_symptoms.filter((values) => {
-            return values == true
-        })
 
         if (facts.medtest.gds >= 200) {
             gds_facts = {
@@ -185,13 +179,6 @@ const gds = new Rule({
                 message: facts.result.test_result.gds.message = 'Hati-Hati! berdasarkan Gula darah sewaktu (GDS) pada tes ini, Anda mungkin menderita Diabetes! glukosa dalam sewaktu (GDS) antara 140 dan 199 didiagnosis menderita ' + txt.bold('Prediabetes'),
                 status: facts.result.test_result.gds.status = 1,
                 score: facts.result.test_result.gds.score = 11.67
-            }
-            return gds_facts
-        } else if (facts.medtest.gds >= 200 || isTrue.length >= 4) {
-            gds_facts = {
-                message: facts.result.test_result.gds.message = 'Anda Menderita Diabetes, Karena Gula Darah Sewaktu sangat tinggi disertai Gejala Klasik Diabetes. Segera hubungi dokter.',
-                status: facts.result.test_result.gds.status = 2,
-                score: facts.result.test_result.gds.score = 20
             }
             return gds_facts
         } else {
