@@ -105,7 +105,7 @@ const fpg = new Rule({
             return fpg_fact
         } else if (facts.medtest.fpg >= 100 && facts.medtest.fpg <= 125) {
             fpg_fact = {
-                message: facts.result.test_result.fpg.message = 'Hati-Hati! Anda mungkin menderita Diabetes! glukosa antara 100 dan 125 didiagnosis menderita paradiabetes',
+                message: facts.result.test_result.fpg.message = 'Hati-Hati! Anda mungkin menderita Diabetes! glukosa antara 100 dan 125 didiagnosis menderita prediabetes',
                 status: facts.result.test_result.fpg.status = 1,
                 score: facts.result.test_result.fpg.score = 16.67
             }
@@ -142,7 +142,7 @@ const gthae = new Rule({
             return gthae_facts
         } else if (facts.medtest.gthae >= 140 && facts.medtest.gthae <= 199) {
             gthae_facts = {
-                message: facts.result.test_result.gthae.message = 'Hati-Hati! pada tes ini Anda mungkin menderita Diabetes! glukosa antara 140 dan 199 didiagnosis menderita paradiabetes',
+                message: facts.result.test_result.gthae.message = 'Hati-Hati! pada tes ini Anda mungkin menderita Diabetes! glukosa antara 140 dan 199 didiagnosis menderita prediabetes',
                 status: facts.result.test_result.gthae.status = 1,
                 score: facts.result.test_result.gthae.score = 16.67
             }
@@ -176,10 +176,10 @@ const overallResult = new Rule({
 
         if (calc >= 75 && calc <= 100) {
             return facts.result.final_result = 'Anda pasti menderita Diabetes! pergi ke dokter!', facts.result.percentage = calc
-        } else if (calc > 25 && calc < 75) {
-            return facts.result.final_result = 'Anda mengalami paradiabetes, lebih baik pergi ke dokter!', facts.result.percentage = calc
-        } else if (calc <= 25) {
-            return facts.result.final_result = 'Anda mungkin mengalami paradiabetes, tetapi lebih baik jika memeriksakan diri ke dokter!', facts.result.percentage = calc
+        } else if (calc > 25 && calc <= 75) {
+            return facts.result.final_result = 'Anda mengalami prediabetes, lebih baik pergi ke dokter!', facts.result.percentage = calc
+        } else if (calc > 5 && calc <= 25) {
+            return facts.result.final_result = 'Anda mungkin mengalami prediabetes, tetapi lebih baik jika memeriksakan diri ke dokter!', facts.result.percentage = calc
         } else {
             return facts.result.final_result = 'Saya harap Anda baik-baik saja !, tetap bugar dan hidup sehat', facts.result.percentage = calc
         }
