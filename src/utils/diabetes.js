@@ -38,7 +38,7 @@ const symptom_risk = new Rule({
             return values == true
         })
 
-        if (isTrue.length >= 4) {
+        if (isTrue.length >= 3) {
             symptom_risk_fact = {
                 message: facts.result.symptom_result.message = 'jika 4 pernyataan benar, Anda dapat diindikasikan mengidap diabetes.',
                 status: facts.result.symptom_result.status = true,
