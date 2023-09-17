@@ -3,8 +3,8 @@ const app = express()
 const hbs = require('hbs')
 
 const path = require('path')
-const viewLocation = path.join(__dirname, '../templates')
-const publicPath = path.join(__dirname, '../public/')
+const viewLocation = path.join(__dirname, '/templates')
+const publicPath = path.join(__dirname, '/public/')
 
 // console.log(publicPath)
 //.use for public, .set for template, views
@@ -12,10 +12,10 @@ app.use(express.static(publicPath))
 app.set('view engine', 'hbs')
 app.set('views', viewLocation)
 
-const partials = path.join(__dirname, '../templates/partials')
+const partials = path.join(__dirname, '/templates/partials')
 hbs.registerPartials(partials)
 
-const expert = require('./utils/diabetes')
+const expert = require('./src/utils/diabetes')
 
 app.get('/', (req, res) => {
     res.render('homepage')

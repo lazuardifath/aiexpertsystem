@@ -2,14 +2,14 @@
   "name": "expert-system-diabetes",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "index.js",
   "engines": {
     "node": "18.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/app.js -e js, hbs",
-    "start": "node src/app.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
