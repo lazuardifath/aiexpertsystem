@@ -67,3 +67,5 @@ const port = process.env.PORT || 1996
 app.listen(port, () => {
     console.log('port listen ', port)
 })
+
+module.exports = app;
